@@ -7,6 +7,16 @@ dotenv.config({
 });
 
 connectDB()
+.then(() => {
+    import("./app.js").then(({ app }) => {
+        app.listen(process.env.PORT || 8000, () => {
+            console.log(`Server is running on port ${process.env.PORT || 8000}`);
+        });
+    })
+})
+.catch((err) => {
+    console.error("MONGODB connection failed!!!: ", err);// Exit the process with a failure code
+});
 
 //!This is the one of the approach for the main entry point of the application. It is responsible for connecting to the database and starting the server.
 /*
