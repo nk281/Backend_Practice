@@ -14,7 +14,8 @@ import fs from 'fs';
             const response = await cloudinary.uploader.upload(filePath, {
                 resource_type: "auto",
             });
-            console.log('File uploaded to Cloudinary:', response.url);
+            //console.log('File uploaded to Cloudinary:', response.url);
+            fs.unlinkSync(filePath); // Delete the file from local storage after successful upload
             return response;
 
         } catch (error) {
